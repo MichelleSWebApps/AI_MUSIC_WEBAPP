@@ -41,3 +41,18 @@ body
 {
     float:left;
 }
+.play_button
+{
+    width: 730px;
+    font-size: 25px;
+}
+#pb3
+{
+    margin-bottom: 50px;
+}
+canvas
+{
+    border:5px solid white;
+    border-radius: 20px;
+    margin-left: 450px;
+}
