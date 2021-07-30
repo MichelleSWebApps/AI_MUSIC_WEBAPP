@@ -7,6 +7,7 @@ leftWristY = 0;
 rightWristX = 0;
 rightWristY = 0;
 scoreLeftWrist=0;
+scoreRightWrist=0;
 
 function preload()
 {
@@ -44,6 +45,53 @@ function draw()
 
     fill("#FF0000");
     stroke("#FF0000");
+
+    circle(rightWristX, rightWristY, 20);
+
+    if(scoreRightWrist>0.2)
+    {
+        if(rightWristY> 0 && rightWristY <= 100)
+        {
+            document.getElementById("speed").innerHTML = "Speed = 0.5x";
+            AMA.rate(0.5);
+            BSE.rate(0.5);
+            WMYB.rate(0.5);
+            OT.rate(0.5);
+        }
+        else if(rightWristY> 100 && rightWristY <= 200)
+        {
+            document.getElementById("speed").innerHTML = "Speed = 1x";
+            AMA.rate(1);
+            BSE.rate(1);
+            WMYB.rate(1);
+            OT.rate(1);
+        }
+        else if(rightWristY> 200 && rightWristY <= 300)
+        {
+            document.getElementById("speed").innerHTML = "Speed = 1.5x";
+            AMA.rate(1.5);
+            BSE.rate(1.5);
+            WMYB.rate(1.5);
+            OT.rate(1.5);
+        }
+        else if(rightWristY> 300 && rightWristY <= 400)
+        {
+            document.getElementById("speed").innerHTML = "Speed = 2x";
+            AMA.rate(2);
+            BSE.rate(2);
+            WMYB.rate(2);
+            OT.rate(2);
+        }
+        else if(rightWristY> 400 && rightWristY <= 500)
+        {
+            document.getElementById("speed").innerHTML = "Speed = 2.5x";
+            AMA.rate(2.5);
+            BSE.rate(2.5);
+            WMYB.rate(2.5);
+            OT.rate(2.5);
+        }
+
+    }
 
     if(scoreLeftWrist>0.2)
     {
@@ -141,11 +189,14 @@ function gotPoses(results)
     if (results.length>0)
     {
         console.log(results);
+        scoreRightWrist=results[0].pose.keypoints[10].score;
         scoreLeftWrist=results[0].pose.keypoints[9].score;
-        console.log("scoreLeftWrist="+scoreLeftWrist);
+        console.log("scoreLeftWrist="+scoreLeftWrist+"scoreRightWrist="+scoreRightWrist);
+
         leftWristX = results[0].pose.leftWrist.x;
         leftWristY = results[0].pose.leftWrist.y;
         console.log("leftWristX = "+ leftWristX + "leftWristY="+leftWristY);
+        
         rightWristX = results[0].pose.rightWrist.x;
         rightWristY = results[0].pose.rightWrist.y;
         console.log("righttWristX = "+ rightWristX + "rightWristY="+rightWristY);
